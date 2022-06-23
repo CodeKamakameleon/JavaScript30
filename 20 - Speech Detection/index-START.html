@@ -13,6 +13,7 @@
 
       const recognition = new SpeechRecognition();
       recognition.interimResults = true;
+      recognition.lang = "en-US";
 
       let p = document.createElement("p");
       const words = document.querySelector(".words");
@@ -24,7 +25,9 @@
           .map((result) => result.transcript)
           .join("");
 
+        const poopScript = transcript.replace(/poop|poo|shit|dump/gi, "💩");
         p.textContent = transcript;
+
         if (e.results[0].isFinal) {
           p = document.createElement("p");
           words.appendChild(p);
